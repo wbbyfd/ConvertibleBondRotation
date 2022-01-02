@@ -21,15 +21,15 @@ public class ConvertibleBondRotation {
     private JScrollPane JScrollPane1;
     private JTextArea textArea1;
     // 我目前持有的低溢价可转债列表:id,name,price
-    String[][] strMyLowPremium = new String[100][3];
+    String[][] strMyLowPremium = new String[200][3];
     // 最新低溢价可转债列表:id,name,price
     String[][] strLastestLowPremium = new String[500][3];
     // 上次的VIP可转债列表:id,name,price
-    String[][] strVipOld = new String[100][3];
+    String[][] strVipOld = new String[200][3];
     // 最新的VIP可转债列表:id,name,price
-    String[][] strVipNew = new String[100][3];
+    String[][] strVipNew = new String[200][3];
     // 我目前持有的双低可转债列表:id,name,price
-    String[][] strMyDoubleLow = new String[100][3];
+    String[][] strMyDoubleLow = new String[200][3];
     // 最新双低可转债列表:id,name,price
     String[][] strLastestDoubleLow = new String[500][3];
 
@@ -38,7 +38,7 @@ public class ConvertibleBondRotation {
     public static void main(String[] args) throws BiffException, IOException, WriteException {
         JFrame frame = new JFrame("ConvertibleBondRotation");
         frame.setContentPane(new ConvertibleBondRotation().JPanel1);
-        frame.setTitle("可转债轮动");
+        frame.setTitle("可转债轮动V2021.01.02");
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int width = 500;
         int height = 900;
@@ -61,7 +61,7 @@ public class ConvertibleBondRotation {
                 "5.关闭《可转债轮动.xls》！\n" +
                 "6.双击执行ConvertibleBondRotation.jar，点击相应按钮即可得到需要轮动的结果。");
 
-//        JPanel4.setVisible(false);
+        JPanel4.setVisible(false);
 
         com.company.ExcelTools excelTools = new com.company.ExcelTools();
         //先删除我的低溢价可转债持仓的其他品种，只保留可转债
@@ -115,7 +115,8 @@ public class ConvertibleBondRotation {
                 System.out.println("最新低溢价可转债排名前50里，我的低溢价可转债持仓未买入的");
                 for (int i = 0; i < 50; i++) {
                     int isExist = 0;
-                    int row = i-1;  //实际在Excel的行是i+1
+                    int row = i+1;
+                    int rank = i-1;
                     if (strLastestLowPremium[i][1] != null) {
                         for (int j = 0; j < strMyLowPremium.length; j++) {
                             if (strMyLowPremium[j][1] != null) {
@@ -127,7 +128,7 @@ public class ConvertibleBondRotation {
                         }
                         if (isExist == 0) {
                             PrintString(strLastestLowPremium[i][0] + "~" + strLastestLowPremium[i][1] + "~现价("
-                                    + strLastestLowPremium[i][2] + ")~~~未买，排名:" + row);
+                                    + strLastestLowPremium[i][2] + ")~~~未买，排名:" + rank);
                         }
                     }
                 }
@@ -165,6 +166,7 @@ public class ConvertibleBondRotation {
                 for (int i = 0; i < 50; i++) {
                     int isExist = 0;
                     int row = i+1;
+                    int rank = i-1;
                     if (strLastestDoubleLow[i][1] != null) {
                         for (int j = 0; j < strMyDoubleLow.length; j++) {
                             if (strMyDoubleLow[j][1] != null) {
@@ -176,7 +178,7 @@ public class ConvertibleBondRotation {
                         }
                         if (isExist == 0) {
                             PrintString(strLastestDoubleLow[i][0] + "~" + strLastestDoubleLow[i][1] + "~现价("
-                                    + strLastestDoubleLow[i][2] + ")~~~未买，排名:" + row);
+                                    + strLastestDoubleLow[i][2] + ")~~~未买，排名:" + rank);
                         }
                     }
                 }
