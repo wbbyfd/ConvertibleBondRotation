@@ -61,7 +61,7 @@ public class ConvertibleBondRotation {
                 "5.关闭《可转债轮动.xls》！\n" +
                 "6.双击执行ConvertibleBondRotation.jar，点击相应按钮即可得到需要轮动的结果。");
 
-        JPanel4.setVisible(false);
+        //JPanel4.setVisible(false);
 
         com.company.ExcelTools excelTools = new com.company.ExcelTools();
         //先删除我的低溢价可转债持仓的其他品种，只保留可转债
